@@ -17,7 +17,7 @@ This package is particularly suited to installing the CLI executable for use tun
 Please see [Useful commands](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/tunnel-useful-commands) for usage examples.</description>
     <releaseNotes>https://github.com/cloudflare/cloudflared/releases</releaseNotes>
     <projectUrl>https://www.cloudflare.com/en-gb/products/tunnel/</projectUrl>
-    <iconUrl>http://cdn.rawgit.com/jpruskin/ChocolateyPackages/master/icons/cloudflared.svg</iconUrl>
+    <iconUrl>https://rawcdn.githack.com/jpruskin/ChocolateyPackages/master/icons/cloudflared.svg</iconUrl>
     <licenseUrl>https://github.com/cloudflare/cloudflared/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/cloudflare/cloudflared</projectSourceUrl>

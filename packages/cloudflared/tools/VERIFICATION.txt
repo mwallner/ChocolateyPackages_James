@@ -1,9 +1,0 @@
-﻿VERIFICATION
-Verification is intended to assist the Chocolatey moderators and community
-in verifying that this package's contents are trustworthy.
- 
-The cloudflared releases page (https://github.com/cloudflare/cloudflared/releases) lists SHA256 checksums along with the download links.
-
-- Navigate to the releases page and find the release matching the package version.
-- Find the `cloudflared-windows-amd64.exe` or `cloudflared-windows-386.exe` checksum
-- Compare it to the file by running `Get-FileHash`, or the hash listed in `chocolateyInstall.ps1`.
