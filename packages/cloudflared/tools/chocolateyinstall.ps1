@@ -5,12 +5,12 @@ $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
   FileFullPath  = Join-Path $toolsDir "cloudflared.exe"
 
-  url           = 'https://github.com/cloudflare/cloudflared/releases/download/2021.9.0/cloudflared-windows-386.exe'
-  url64bit      = 'https://github.com/cloudflare/cloudflared/releases/download/2021.9.0/cloudflared-windows-amd64.exe'
+  url           = 'https://github.com/cloudflare/cloudflared/releases/download/2021.10.3/cloudflared-windows-386.exe'
+  url64bit      = 'https://github.com/cloudflare/cloudflared/releases/download/2021.10.3/cloudflared-windows-amd64.exe'
 
-  checksum      = '64a53ad21481838bbbafaac9751c7848130160306ec9e7cd349a355d1cb28705'
+  checksum      = '6dba2c4b43af7302cfdbae791a47e885dbbb366f01842e5aea13a24fbdb5f552'
   checksumType  = 'sha256'
-  checksum64    = '41d394c0504074f12203892cec24ba2fbddfaff87448edd86f440f7c20505106'
+  checksum64    = '3cf5585fb3b00e6b01d562c86fb63bac96ae003eed610aacb8ca1bebc1390969'
   checksumType64= 'sha256'
 }
 
