@@ -1,0 +1,33 @@
+name: Check for Package Updates
+
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/**'
+  schedule:
+    - cron: '30 3,15 * * *'
+
+jobs:
+  update:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Update All
+        shell: pwsh
+        run: |
+          Get-Item -Path .\packages\*\Update.ps1 | ForEach-Object -Parallel {
+            & $_.FullName
+          }
+          "new_packages=$((Get-ChildItem -Filter *.nupkg).Count)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Publish New Packages
+        shell: pwsh
+        env:
+          NugetApiKey: ${{ secrets.CHOCOLATEYAPIKEY }}
+        run: choco push --source https://push.chocolatey.org/ --k="${{ env.NugetApiKey }}"
+        if: env.new_packages > 0 && env.NugetApiKey != ''
