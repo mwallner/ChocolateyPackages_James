@@ -1,26 +1,25 @@
-$packageName = '{{PackageName}}'
-$url = '{{DownloadUrl}}'
-$checksum = '{{Checksum}}'
-$checksumType = 'sha256'
-$url64 = "$url"
-$checksum64 = "$checksum"
-$checksumType64 = "checksumType"
-$toolsDir = "$(Split-Path -Parent $MyInvocation.MyCommand.Definition)"
-Install-ChocolateyZipPackage -PackageName "$packageName" `
-    -Url "$url" `
-    -UnzipLocation "$toolsDir" `
-    -Url64bit "$url64" `
-    -Checksum "$checksum" `
-    -ChecksumType "$checksumType" `
-    -Checksum64 "$checksum64" `
-    -ChecksumType64 "$checksumType64"
-Write-Verbose "Accepting license..."
-$regRoot = 'HKCU:\Software\Sysinternals'
-$regPkg = 'Disk2Vhd'
-$regPath = Join-Path $regRoot $regPkg
-if (!(Test-Path $regRoot)) {New-Item -Path "$regRoot"}
-if (!(Test-Path $regPath)) {New-Item -Path "$regRoot" -Name "$regPkg"}
-Set-ItemProperty -Path "$regPath" -Name EulaAccepted -Value 1
-if ((Get-ItemProperty -Path "$regPath").EulaAccepted -ne 1) {
-    throw "Failed setting registry value."
+$ErrorActionPreference = 'Stop'
+$toolsDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+
+$PackageArguments = @{
+    PackageName   = $env:ChocolateyPackageName
+    Url           = "https://download.sysinternals.com/files/Disk2vhd.zip"
+    Checksum      = "{{Checksum}}"
+    ChecksumType  = "sha256"
+    UnzipLocation = $toolsDir
+}
+
+Install-ChocolateyZipPackage @PackageArguments
+
+$RegistryPath = 'HKCU:\Software\Sysinternals\Disk2Vhd'
+if (-not (Get-ItemProperty -Path $RegistryPath -Name EulaAccepted -ErrorAction SilentlyContinue).EulaAccepted) {
+    Write-Verbose "Accepting Disk2vhd EULA by setting registry value"
+    try {
+        if (-not (Split-Path $RegistryPath | Test-Path)) {
+            $null = New-Item -Path $RegistryPath -ItemType RegistryKey -Force
+        }
+        Set-ItemProperty -Path $RegistryPath -Name EulaAccepted -Value 1
+    } catch {
+        Write-Warning "Failed to accept the Disk2vhd EULA. User may be prompted to accept the EULA on first run."
+    }
 }
