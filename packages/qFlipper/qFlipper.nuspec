@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+    <metadata>
+        <id>qFlipper</id>
+        <title>qFlipper</title>
+        <version>1.2.1</version>
+        <authors>Flipper Devices</authors>
+        <owners>jpruskin</owners>
+        <summary>A graphical desktop application for updating Flipper Zero firmware via PC (and more)</summary>
+        <description>qFlipper is a desktop application for updating Flipper Zero firmware and databases, manage files on SD card, and repair corrupted device.
+
+![img](https://camo.githubusercontent.com/fa07006e9a6ae12368d44c105ced530acb6b6a498df1b17bc8e8194ac54473e7/68747470733a2f2f63646e2e666c69707065727a65726f2e6f6e652f71666c69707065725f6c6f676f5f776974685f636f6e6e65637465645f666c69707065722e706e67)
+
+### Features
+
+- Update Flipper's firmware and supplemental data with a press of one button
+- Repair a broken firmware installation
+- Stream Flipper's display and control it remotely
+- Install firmware from a .dfu file
+- Backup and restore settings, progress and pairing data
+- Automatic self-update feature
+- Command line interface
+        </description>
+        <releaseNotes>https://github.com/flipperdevices/qFlipper/releases</releaseNotes>
+        <projectUrl>https://github.com/flipperdevices/qFlipper</projectUrl>
+        <iconUrl>https://rawcdn.githack.com/jpruskin/ChocolateyPackages/master/icons/flipper.png</iconUrl>
+        <licenseUrl>https://github.com/flipperdevices/qFlipper/blob/dev/LICENSE</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <projectSourceUrl>https://github.com/cloudflare/cloudflared</projectSourceUrl>
+        <packageSourceUrl>https://github.com/JPRuskin/ChocolateyPackages/tree/main/packages/qFlipper</packageSourceUrl>
+        <docsUrl>https://docs.flipperzero.one/basics/firmware-update</docsUrl>
+        <bugTrackerUrl>https://github.com/flipperdevices/qFlipper/issues</bugTrackerUrl>
+        <tags>flipper update firmware</tags>
+    </metadata>
+    <files>
+        <file src="tools\**" target="tools" />
+    </files>
+</package>
