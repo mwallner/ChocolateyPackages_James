@@ -20,10 +20,34 @@ jobs:
       - name: Update All
         shell: pwsh
         run: |
-          Get-Item -Path .\packages\*\Update.ps1 | ForEach-Object -Parallel {
-            & $_.FullName
-          }
+          Get-Item -Path .\packages\*\Update.ps1 | Start-ThreadJob -ScriptBlock {
+            [CmdletBinding()]
+            param(
+              [Parameter(ValueFromPipelineByPropertyName)]
+              $FullName
+            )
+            process {
+              try {
+                & $FullName -ErrorAction Stop
+              } catch {
+                $PackageId = $FullName | Split-Path -Parent | Split-Path -Leaf
+                $ErrorHt = @{
+                  Exception = $_.Exception
+                  Message = "Failed to update package [$($PackageId)]: $_"
+                  TargetObject = $PackageId
+                }
+                Write-Error @ErrorHt
+              }
+            }
+          } | Wait-Job | Receive-Job -ErrorVariable FailedPackages -ErrorAction Continue
           "new_packages=$((Get-ChildItem -Filter *.nupkg).Count)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+          if ($FailedPackages) {
+            "failed_packages=$($FailedPackages.TargetObject -join ',')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+            $ErrorView = "DetailedView"
+            $FailedPackages
+            exit $FailedPackages.Count
+          }
 
       - name: Publish New Packages
         shell: pwsh
