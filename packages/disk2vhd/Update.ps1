@@ -1,3 +1,4 @@
+[CmdletBinding()]
 param(
     [string]$PackageId = (Split-Path $PSScriptRoot -Leaf),
 

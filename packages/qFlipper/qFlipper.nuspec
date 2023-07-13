@@ -4,7 +4,7 @@
     <metadata>
         <id>qFlipper</id>
         <title>qFlipper</title>
-        <version>1.2.1</version>
+        <version>$version$</version>
         <authors>Flipper Devices</authors>
         <owners>jpruskin</owners>
         <summary>A graphical desktop application for updating Flipper Zero firmware via PC (and more)</summary>
