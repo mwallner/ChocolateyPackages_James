@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>beeper</id>
+    <version>$version$</version>
+    <packageSourceUrl>https://github.com/jpruskin/ChocolateyPackages/packages/beeper</packageSourceUrl>
+    <owners>jpruskin</owners>
+    <title>Beeper (Install)</title>
+    <authors>Beeper Inc.</authors>
+    <projectUrl>https://www.beeper.com/</projectUrl>
+    <iconUrl>https://twitter.com/onbeeper/photo</iconUrl>
+    <copyright>Beeper</copyright>
+    <projectSourceUrl>https://gitlab.com/beeper</projectSourceUrl>
+    <tags>chat</tags>
+    <summary>All of your chats in one app</summary>
+    <description>Beeper is a single app to chat on iMessage, WhatsApp, and 13 other networks. You can search, prioritize, and mute messages. And with a unified inbox, you'll never miss a message again.
+
+Built on Matrix, the open source federated messaging protocol. All of our 'bridges' which connect Beeper to other chat networks are open source, available on our Gitlab. You can run our backend stack on your own server or pay for our hosted option.
+
+This package contains the Windows client for Beeper.</description>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+    <file src="icons\**" target="icons" />
+  </files>
+</package>

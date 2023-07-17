@@ -1,0 +1,44 @@
+{
+    "messages": [
+        {
+            "room_id": "!bJfUshIJsOBiwGQnjC:beeper.com",
+            "type": "m.room.message",
+            "content": {
+                "msgtype": "m.text",
+                "body": "It seems like I probably could distribute the client installer, for instance, as I think it's using an Apache 2.0 license",
+                "com.beeper.linkpreviews": [],
+                "com.beeper.origin_client_type": "desktop",
+                "_isEmojiBody": null
+            }
+        },
+        {
+            "room_id": "!bJfUshIJsOBiwGQnjC:beeper.com",
+            "type": "m.room.message",
+            "content": {
+                "msgtype": "m.text",
+                "body": "Hey, Brad the CTO here! Happy to have the community maintain a package here and let us know if there's anything we can do to help! I know there's already a community homebrew formula that exists: https://formulae.brew.sh/cask/beeper - Brad",
+                "_isEmojiBody": null
+            }
+        },
+        {
+            "room_id": "!bJfUshIJsOBiwGQnjC:beeper.com",
+            "type": "m.room.message",
+            "content": {
+                "msgtype": "m.text",
+                "body": "Fantastic! Just to confirm the one thing, then: the Beeper desktop client is licensed with Apache 2.0, and consequently I'm okay to distribute it in the package?",
+                "com.beeper.linkpreviews": [],
+                "com.beeper.origin_client_type": "desktop",
+                "_isEmojiBody": null
+            }
+        },
+        {
+            "room_id": "!bJfUshIJsOBiwGQnjC:beeper.com",
+            "type": "m.room.message",
+            "content": {
+                "msgtype": "m.text",
+                "body": "The Beeper desktop client isn't available under a free-software license, it's proprietary software. However, you are free to redistribute the application, as it's already available to anyone on our website. - Brad",
+                "_isEmojiBody": null
+            }
+        }
+    ]
+}
