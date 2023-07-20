@@ -15,6 +15,34 @@ function Get-PatternLineNumberOrDefault($File, $Pattern, $Default) {
     }
 }
 
+function Invoke-DebugLetsGoAlready {
+    $id = $PID
+    $runspace = $([System.Management.Automation.Runspaces.Runspace]::DefaultRunSpace.Id)
+
+    $debugCommand = @"
+Enter-PSHostProcess -Id $id
+Debug-Runspace $runspace
+"@
+
+    Write-Host @"
+Now waiting for debug connection...'
+This is PID '$id', in runspace '$runspace'
+attach with your favourte debugger, or simply
+
+$debugCommand
+
+in PowerSHell ISE
+"@
+
+    if ($env:ChocoPackageDebugISE) {
+        $tmpFile = New-TemporaryFile
+        $debugCommand | Out-File $tmpFile -Encoding default
+        powershell_ise.exe $tmpFile  
+    }
+
+    Wait-Debugger
+}
+
 if (Test-DebugRequest) {
     $ScriptRunnerFile = Join-Path $env:ChocolateyInstall 'helpers\chocolateyScriptRunner.ps1'
 
@@ -36,14 +64,11 @@ if (Test-DebugRequest) {
         default { @{Line = Get-PatternLineNumberOrDefault $ScriptRunnerFile '& "\$packageScript"' 63 } } 
         '^Debug$' { 
             @{Line = 1 }  # This is for debugging the extension.
-            Wait-Debugger
+            Invoke-DebugLetsGoAlready
         }
     }
 
     Set-PSBreakpoint -Script $ScriptRunnerFile @Breakpoint -Action {
-        Write-Host 'Now waiting for debug connection...'
-        Write-Host "This is PID '$($PID)', in runspace '$([System.Management.Automation.Runspaces.Runspace]::DefaultRunSpace.Id)'"
-
-        Wait-Debugger
+        Invoke-DebugLetsGoAlready
     }
 }

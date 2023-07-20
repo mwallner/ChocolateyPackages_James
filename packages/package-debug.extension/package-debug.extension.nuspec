@@ -72,6 +72,8 @@ enclosed in quotation marks, you should use an editor that supports UTF-8, not t
 
       #### Windows PowerShell ISE
 
+      To make debugging more accessible, it is possible to jump right into PowerShell ISE by setting `$env:ChocoPackageDebugISE` to any non-false value.
+
       As in the terminal above, to debug using Windows PowerShell ISE, use `Enter-PSHostProcess` and `Debug-Runspace` to enter the debugger.
 
       #### VSCode
